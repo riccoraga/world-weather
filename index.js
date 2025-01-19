@@ -1,12 +1,37 @@
 const url =
   "https://api.weatherapi.com/v1/current.json?key=9a4ef0461e74477ea96102651251901&q="; // Base URL
 const searchValue = document.querySelector("#form-container"); // Get the element input from the HTML page by its id
+// Add the option to be sure that the browser support passive enters (Avoid violations on Browsers)
+// function supportsPassiveEvents() {
+//   let supportsPassive = false;
+//   try {
+//     const options = {
+//       get passive() {
+//         supportsPassive = true;
+//         return false;
+//       },
+//     };
+//     window.addEventListener("test", null, options);
+//     window.removeEventListener("test", null, options);
+//   } catch (e) {
+//     supportsPassive = false;
+//   }
+//   return supportsPassive;
+// } Is not working, need to be checked and implemented
+
+// Use an arrow function to check before assigning the passive event if the Browser support that
+//const options = supportsPassiveEvents() ? { passive: true } : false;
 
 // Add event listener to the input value and call a function to retrieve the input
-searchValue.addEventListener("submit", (e) => {
-  e.preventDefault();
-  retrieveInput();
-});
+searchValue.addEventListener(
+  "submit",
+  (e) => {
+    e.preventDefault();
+    retrieveInput();
+    //return false // Alternative to e.preventDefault();
+  }
+  //options // { passive: true }) // The form's submit event listener is marked as passive, will avoid violation on Chrome
+);
 
 // Using an async function as data could be not synchronized
 async function retrieveInput() {
@@ -33,7 +58,7 @@ async function fetchData(query) {
     const weather = data.current.condition.text;
     const temperature = data.current.temp_c;
     const imageWeather = data.current.condition.icon;
-    document.getElementById("searchValue").value = '' // Clean the form input if the values have been passed
+    document.getElementById("searchValue").value = ""; // Clean the form input if the values have been passed
     displayWeather(
       placeName,
       region,
@@ -61,7 +86,6 @@ const displayWeather = (
   temperature,
   imageWeather
 ) => {
-  
   let changeImage = "./images/rainbow.png";
   console.log(weather);
   switch (weather.toLowerCase()) {
@@ -98,6 +122,9 @@ const displayWeather = (
     case "mist":
       changeImage = "./images/mist-day.png";
       break;
+    case "clear":
+      changeImage = "./images/clear.png";
+      break;
     default:
       changeImage = "./images/rainbow.png";
       break;
@@ -105,10 +132,10 @@ const displayWeather = (
 
   const displayResults = document.querySelector("#display-results");
 
-  displayResults.innerHTML = ` <div class="label"><h2>Weather in ${placeName},
+  displayResults.innerHTML = `<section class="label"><h2 >Weather in ${placeName},
    ${region}, ${country}</h2>
     <p>Temperature: ${temperature}°C </p> 
     <p>Condition: ${weather}</p>
      <img src="${changeImage}" alt="${weather}" id="weatherImage">
-     </div>`;
+     </section>`;
 };
