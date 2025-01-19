@@ -6,23 +6,23 @@ Welcome to the World Weather ! This API provides weather data from cities around
 1. [Introduction](#introduction)
 2. [Features](#features)
 3. [Installation](#getting-started)
-4. [Authentication](#authentication)
-
-9. [Contributing](#contributing)
+4. [Contributing](#contributing)
 
 
 ## Introduction
 
-The World Weather API allows the access current weather data for cities around the world.
+The World Weather API allows the access to current weather data for cities around the world.
 
 ## Features
 
 - Current weather data
 - Supports multiple cities
-- Easy-to-use, jsut enter the City/Town and the current Weather will be displayed
+- Easy-to-use, just enter the City/Town and the current Weather will be displayed
 
 
 ### Installation
 To use the World Weather API, you need to clone the repo or visit this link: [World Weather API](https://ricco-world-weather.netlify.app/)
 
+## Contributing
+If you want to contribute on this project ask the permission and we can work together and expand the project
 
