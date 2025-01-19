@@ -23,6 +23,6 @@ The World Weather API allows the access current weather data for cities around t
 
 
 ### Installation
-To use the World Weather API, you need to clone the repo or visit this link:
+To use the World Weather API, you need to clone the repo or visit this link: [World Weather API](https://ricco-world-weather.netlify.app/)
 
 
